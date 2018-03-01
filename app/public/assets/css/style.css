@@ -1,0 +1,24 @@
+/*body{
+background: url('../images/couplesMain.jpg');   
+} 
+section {
+    position: relative;
+    background-color: transparent !important;
+}
+
+.jumbotron {
+     background-color: transparent;}*/
+
+
+
+body{
+
+	background-image: url("../images/couplesMain.jpg");
+    background-size:cover;
+
+
+}
+
+.jumbotron {
+     background-color: transparent;
+ }
