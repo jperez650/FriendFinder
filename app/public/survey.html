@@ -26,7 +26,7 @@
             <input type="text" class="form-control" id="user-name" placeholder="Name ...">
         </div>
         <div class="form-group">
-            <label for="user-link"><h3>Link (Required)</h3></label>
+            <label for="user-link"><h3>Link to Photo Image(Required)</h3></label>
             <input type="text" class="form-control" id="user-link" placeholder="Link ...">
         </div>
     </form>
@@ -229,12 +229,11 @@
       // $.post("", newFriend, function(match){
       //   // display match in modal
       // })
-
-      $.post("/api/friends", newfriend,
-        function(math) {
+      $.post("/api/friends", newFriend,
+        function(data) {
 
           // If a table is available... tell user they are booked.
-          if (match) {
+          if (data) {
             alert("Yay! You are officially booked!");
           }
 
@@ -244,12 +243,34 @@
           }
 
           // Clear the form when submitting
-          $("#reserve-name").val("");
-          $("#reserve-phone").val("");
-          $("#reserve-email").val("");
-          $("#reserve-unique-id").val("");
+          $("#user-name").val("");
+          $("#user-link").val("");
+
 
         });
+
+      // $.post("/api/friends", newfriend,
+      //   function(math) {
+
+          // friendsArray.push(data)
+
+          // If a table is available... tell user they are booked.
+          // if (match) {
+          //   alert("Yay! You are officially booked!");
+          // }
+
+          // // If a table is available... tell user they on the waiting list.
+          // else {
+          //   alert("Sorry you are on the wait list");
+          // }
+
+          // // Clear the form when submitting
+          // $("#reserve-name").val("");
+          // $("#reserve-phone").val("");
+          // $("#reserve-email").val("");
+          // $("#reserve-unique-id").val("");
+
+        // });
 
     });
 

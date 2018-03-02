@@ -1,6 +1,6 @@
 
 
-var friendMatch = require("../data/friends.js");
+var friends = require("../data/friends.js");
 
 
 module.exports = function(app) {
@@ -11,7 +11,7 @@ module.exports = function(app) {
   // ---------------------------------------------------------------------------
 
   app.get("/api/friends", function(req, res) {
-    res.json(friendMatch);
+    res.json(friends);
   });
 
 
@@ -25,23 +25,25 @@ module.exports = function(app) {
   // ---------------------------------------------------------------------------
 
   app.post("/api/friends", function(req, res) {
+  	// friends.push(req.body)
+// console.log(req)
     // Note the code here. Our "server" will respond to requests and let users know if they have a table or not.
     // It will do this by sending out the value "true" have a table
     // req.body is available since we're using the body-parser middleware
-    console.log("post")
-    console.log(req.body)
-    var userData = req.body
-    var scores = []
-    userData.added = true
-    res.json(userData)
-    // if (friendMatch.length < 5) {
-    //   friendMatch.push(req.body);
-    //   res.json(true);
-    // }
-    // else {
-    //   waitListData.push(req.body);
-    //   res.json(false);
-    // }
+    // console.log("post")
+    // console.log(req.body)
+    // var userData = req.body
+    // var scores = []
+    // userData.added = true
+    // res.json(userData)
+    if (friends.length < 7) {
+      friends.push(req.body);
+      res.json(true);
+    }
+    else {
+      friends.push(req.body);
+      res.json(false);
+    }
   });
 
   // ---------------------------------------------------------------------------
@@ -50,8 +52,10 @@ module.exports = function(app) {
 
   app.post("/api/clear", function() {
     // Empty out the arrays of data
-    friendMatch = [];
+    friends = [];
 
-    console.log(friendMatch);
+    console.log(friends);
   });
 };
+
+
