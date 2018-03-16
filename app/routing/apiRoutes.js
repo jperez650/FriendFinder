@@ -2,58 +2,35 @@
 
 var friends = require("../data/friends.js");
 
-
+console.log(friends)
 module.exports = function(app) {
-  // API GET Requests
-  // Below code handles when users "visit" a page.
-  // In each of the below cases when a user visits a link
-  // (ex: localhost:PORT/api/admin... they are shown a JSON of the data in the table)
-  // ---------------------------------------------------------------------------
-
   app.get("/api/friends", function(req, res) {
     res.json(friends);
   });
 
-
-
-  // API POST Requests
-  // Below code handles when a user submits a form and thus submits data to the server.
-  // In each of the below cases, when a user submits form data (a JSON object)
-  // ...the JSON is pushed to the appropriate JavaScript array
-  // (ex. User fills out a reservation request... this data is then sent to the server...
-  // Then the server saves the data to the tableData array)
-  // ---------------------------------------------------------------------------
-
   app.post("/api/friends", function(req, res) {
-  	// friends.push(req.body)
-// console.log(req)
-    // Note the code here. Our "server" will respond to requests and let users know if they have a table or not.
-    // It will do this by sending out the value "true" have a table
-    // req.body is available since we're using the body-parser middleware
-    // console.log("post")
-    // console.log(req.body)
-    // var userData = req.body
-    // var scores = []
-    // userData.added = true
-    // res.json(userData)
-    if (friends.length < 7) {
-      friends.push(req.body);
-      res.json(true);
+    
+    var newUser = req.body
+    var smallestDiff = 100000;
+    var match = {}
+
+    for (var i = 0; i < friends.length; i++) {
+      var difference = 0;
+      for (var j = 0; j < friends[i].score.length; j++) {
+        difference += (Math.abs(parseInt(friends[i].score[j])-parseInt(newUser.score[j])))
+        if(difference< smallestDiff){
+          smallestDiff = difference;
+          match.name = friends[i].name;
+          match.photo = friends[i].photo;
+        }
+      }
     }
-    else {
-      friends.push(req.body);
-      res.json(false);
-    }
+    friends.push(newUser);
+    res.json(match);
   });
 
-  // ---------------------------------------------------------------------------
-  // I added this below code so you could clear out the table while working with the functionality.
-  // Don"t worry about it!
-
   app.post("/api/clear", function() {
-    // Empty out the arrays of data
     friends = [];
-
     console.log(friends);
   });
 };
