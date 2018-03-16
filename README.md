@@ -1,6 +1,6 @@
 # Friend Finder
-<img src="/public/assets/images/home.jpg">
-<img src="/public/assets/images/survey.jpg">
+<img src="app/public/assets/images/home.jpg">
+<img src="app/public/assets/images/survey.jpg">
 
 In this app, you can answer 10 questions on a scale 1 to 5 with one being strongly disagree and 5 being strongly agree, after you enter your name , add a link, and answering the questions. Your response would be compared to the existing results inside our data, and you will be return with the closest match according to your responses.
 
